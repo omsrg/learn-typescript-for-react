@@ -1,8 +1,12 @@
 import React, { useRef, useCallback } from "react";
-import { useTodos } from "../04-custom-hooks/useTodos";
+import { TodosProvider, useTodos, useAddTodo, useRemoveTodo } from "../useTodos";
 
-function EpsFive() {
-	const { todos, addTodo, removeTodo } = useTodos([{ id: 0, text: "Hey there", done: false }]);
+function EpsSix() {
+	const todos = useTodos();
+	const addTodo = useAddTodo();
+	const removeTodo = useRemoveTodo();
+
+	// const { todos, addTodo, removeTodo } = useTodos([{ id: 0, text: "Hey there", done: false }]);
 
 	const newTodoRef = useRef<HTMLInputElement>(null);
 
@@ -55,4 +59,20 @@ function EpsFive() {
 	);
 }
 
-export default EpsFive;
+const EpsSixWrapper = () => {
+	return (
+		<TodosProvider initialTodos={[{ id: 0, text: "Hey there useContext", done: false }]}>
+			<div
+				style={{
+					display: "grid",
+					gridTemplateColumns: "50% 50%",
+				}}
+			>
+				<EpsSix />
+				<EpsSix />
+			</div>
+		</TodosProvider>
+	);
+};
+
+export default EpsSixWrapper;

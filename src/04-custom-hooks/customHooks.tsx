@@ -1,5 +1,5 @@
-import React, { useRef, useCallback } from "react";
-import { useTodos } from "../useTodos";
+import { useRef, useCallback } from "react";
+import { useTodos } from "./useTodos";
 
 function EpsFour() {
 	const { todos, addTodo, removeTodo } = useTodos([{ id: 0, text: "Hey there", done: false }]);
