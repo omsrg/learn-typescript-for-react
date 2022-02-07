@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useCallback } from "react";
+import "./App.css";
+
+const Heading = ({ title }: { title: string }) => {
+	return <h1>{title}</h1>;
+};
+
+const Box: React.FC = ({ children }) => {
+	return <div>{children}</div>;
+};
+
+const List: React.FC<{ items: string[]; onClick?: (item: string) => void }> = ({
+	items,
+	onClick,
+}) => {
+	return (
+		<ul>
+			{items.map((item, idx) => (
+				<li key={idx} onClick={() => onClick?.(item)}>
+					{item}
+				</li>
+			))}
+		</ul>
+	);
+};
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const onListClick = useCallback((item: string) => {
+		alert(item);
+	}, []);
+
+	return (
+		<div className="App">
+			<Heading title="Introduction" />
+			<Box>Hello from the other side</Box>
+			<List items={["one", "two", "three"]} onClick={onListClick} />
+		</div>
+	);
 }
 
 export default App;
