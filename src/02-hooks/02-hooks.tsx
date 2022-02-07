@@ -1,5 +1,4 @@
 import React, { useCallback, useState, useEffect, useReducer, useRef } from "react";
-import "./App.css";
 
 const Heading = ({ title }: { title: string }) => {
 	return <h1>{title}</h1>;
@@ -21,7 +20,7 @@ interface Todo {
 
 type ActionType = { type: "ADD"; text: string } | { type: "REMOVE"; id: number };
 
-function App() {
+function EpsTwo() {
 	const [payload, setPayload] = useState<Payload | null>(null);
 
 	useEffect(() => {
@@ -82,4 +81,4 @@ function App() {
 	);
 }
 
-export default App;
+export default EpsTwo;
